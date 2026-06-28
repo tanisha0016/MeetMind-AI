@@ -1,9 +1,16 @@
+import Navbar from "../components/layout/Navbar";
+import Hero from "../components/layout/Hero";
+import Features from "../components/layout/Features";
+import Footer from "../components/layout/Footer";
+
 const LandingPage = () => {
   return (
-    <div>
-      <h1>Welcome to MeetMind AI 🚀</h1>
-      <p>Transform your meetings into actionable insights.</p>
-    </div>
+    <>
+      <Navbar />
+      <Hero />
+      <Features />
+      <Footer />
+    </>
   );
 };
 
