@@ -53,3 +53,18 @@ export const updateMeeting = async (
     },
   );
 };
+
+export const uploadMeetingAudio = async (
+  owner: string,
+  title: string,
+  description: string,
+  audioUrl: string,
+) => {
+  return Meeting.create({
+    owner,
+    title,
+    description,
+    audioUrl,
+    status: "uploaded",
+  });
+};

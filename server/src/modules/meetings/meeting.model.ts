@@ -33,16 +33,23 @@ const meetingSchema = new Schema(
       required: true,
     },
 
-    audioUrl: String,
-
-    transcript: String,
-
-    summary: String,
-
-    actionItems: {
-      type: [String],
-      default: [],
+    audioUrl: {
+      type: String,
     },
+
+    transcript: {
+      type: String,
+    },
+
+    summary: {
+      type: String,
+    },
+
+    actionItems: [
+      {
+        type: String,
+      },
+    ],
 
     status: {
       type: String,
@@ -52,7 +59,7 @@ const meetingSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.model<IMeeting>("Meeting", meetingSchema);

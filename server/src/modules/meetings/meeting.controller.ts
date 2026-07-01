@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { createMeeting, getMeetings, getMeetingById, deleteMeeting, updateMeeting } from "./meeting.service";
+import { createMeeting, getMeetings, getMeetingById, deleteMeeting, updateMeeting, uploadMeetingAudio } from "./meeting.service";
 import { MEETING_MESSAGES } from "./meeting.constants";
 import { ParamsDictionary } from "express-serve-static-core";
 
@@ -117,6 +117,36 @@ export const update = async (
     res.json({
       success: true,
       message: MEETING_MESSAGES.UPDATED,
+      data: meeting,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const upload = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Audio file is required",
+      });
+    }
+
+    const meeting = await uploadMeetingAudio(
+      req.user!.userId,
+      req.body.title,
+      req.body.description,
+      req.file.path,
+    );
+
+    res.status(201).json({
+      success: true,
+      message: "Audio uploaded successfully",
       data: meeting,
     });
   } catch (error) {
