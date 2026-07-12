@@ -124,7 +124,7 @@ export const update = async (
   }
 };
 
-export const upload = async (
+export const uploadMeeting = async (
   req: Request,
   res: Response,
   next: NextFunction,
