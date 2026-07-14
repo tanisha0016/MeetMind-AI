@@ -1,15 +1,38 @@
 import mongoose, { Schema, Document } from "mongoose";
 import { MEETING_STATUS } from "./meeting.constants";
 
+export interface IActionItem {
+  task: string;
+  owner?: string;
+  deadline?: string;
+}
+
+export interface IKeyDecision {
+  task: string;
+  owner?: string;
+}
+
 export interface IMeeting extends Document {
   title: string;
   description?: string;
   owner: mongoose.Types.ObjectId;
+
   audioUrl?: string;
+
   transcript?: string;
+
   summary?: string;
-  actionItems: string[];
+
+  keyDecisions: IKeyDecision[];
+
+  actionItems: {
+    task: string;
+    owner?: string;
+    deadline?: string;
+  }[];
+
   status: string;
+
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,17 +62,34 @@ const meetingSchema = new Schema(
 
     transcript: {
       type: String,
+      default: "",
     },
 
     summary: {
       type: String,
+      default: "",
     },
 
-    actionItems: [
-      {
-        type: String,
-      },
-    ],
+    keyDecisions: {
+      type: [
+        {
+          task: String,
+          owner: String,
+        },
+      ],
+      default: [],
+    },
+
+    actionItems: {
+      type: [
+        {
+          task: String,
+          owner: String,
+          deadline: String,
+        },
+      ],
+      default: [],
+    },
 
     status: {
       type: String,

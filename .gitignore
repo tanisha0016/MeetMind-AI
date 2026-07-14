@@ -24,3 +24,23 @@ coverage
 node_modules
 dist
 .env
+
+# Python
+server/.venv/
+
+# Environment
+.env
+server/.env
+
+# Uploaded files
+server/uploads/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Logs
+*.log
