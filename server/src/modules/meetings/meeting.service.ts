@@ -14,8 +14,12 @@ export const createMeeting = async (
   return meeting;
 };
 
-export const getMeetings = async (owner: string) => {
-  return Meeting.find({ owner }).sort({ createdAt: -1 });
+export const getMeetings = async (owner:string)=>{
+ return Meeting.find({owner})
+ .select(
+   "title description summary status createdAt"
+ )
+ .sort({createdAt:-1});
 };
 
 export const getMeetingById = async (

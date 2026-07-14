@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { createMeeting, getMeetings, getMeetingById, deleteMeeting, updateMeeting, uploadMeetingAudio } from "./meeting.service";
 import { MEETING_MESSAGES } from "./meeting.constants";
-import { ParamsDictionary } from "express-serve-static-core";
 
 export const create = async (
   req: Request,
