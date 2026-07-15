@@ -5,6 +5,7 @@ import DashboardPage from "./pages/DashboardPage";
 import MeetingDetailsPage from "./pages/MeetingDetailsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
+import UploadMeetingPage from "./pages/UploadMeetingPage";
 
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
         <Route path="/meetings/:id" element={<MeetingDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/upload" element={<UploadMeetingPage />} />
       </Routes>
     </BrowserRouter>
   );

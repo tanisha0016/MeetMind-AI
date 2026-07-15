@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import LoginPage  from "../pages/LoginPage";
+import UploadMeetingPage from "../pages/UploadMeetingPage";
 //import RegisterPage from "../pages/RegisterPage";
 
 const AppRoutes = () => {
@@ -12,6 +13,10 @@ const AppRoutes = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route
+  path="/upload"
+  element={<UploadMeetingPage />}
+/>
         
       </Routes>
     </BrowserRouter>
