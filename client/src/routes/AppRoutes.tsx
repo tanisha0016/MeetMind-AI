@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "../pages/LandingPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import LoginPage  from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPage";
 import UploadMeetingPage from "../pages/UploadMeetingPage";
+import MeetingDetailsPage from "../pages/MeetingDetailsPage";
 //import RegisterPage from "../pages/RegisterPage";
 
 const AppRoutes = () => {
@@ -13,14 +14,14 @@ const AppRoutes = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-  path="/upload"
-  element={<UploadMeetingPage />}
-/>
-        
+        <Route path="/upload" element={<UploadMeetingPage />} />
+        <Route path="/meetings/:id" element={<MeetingDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
-};
+}
+
+
+
 
 export default AppRoutes;
