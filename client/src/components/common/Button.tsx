@@ -1,7 +1,7 @@
 type ButtonProps = {
   children: React.ReactNode;
-  onClick?: () => void;
   variant?: "primary" | "secondary";
+  onClick?: () => void;
 };
 
 const Button = ({
