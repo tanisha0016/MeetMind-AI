@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/auth.service";
 
 const LoginPage = () => {
@@ -7,7 +7,6 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (
@@ -40,45 +39,91 @@ const LoginPage = () => {
   };
 
   return (
-    <div
-      style={{
-        width: "350px",
-        margin: "100px auto",
-      }}
-    >
-      <h1>Login</h1>
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-          required
-        />
+      <div className="w-full max-w-md rounded-2xl bg-white p-10 shadow-lg">
 
-        <br />
-        <br />
+        <div className="mb-8 text-center">
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
-          required
-        />
+          <h1 className="text-4xl font-bold text-slate-900">
+            MeetMind AI
+          </h1>
 
-        <br />
-        <br />
+          <p className="mt-3 text-slate-500">
+            AI-powered meeting transcription
+          </p>
 
-        <button type="submit">
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          <p className="mt-1 text-sm text-slate-400">
+            Welcome back! Sign in to continue.
+          </p>
+
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+
+          <div>
+
+            <label className="mb-2 block text-sm font-medium text-slate-700">
+              Email
+            </label>
+
+            <input
+              type="email"
+              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              required
+            />
+
+          </div>
+
+          <div>
+
+            <label className="mb-2 block text-sm font-medium text-slate-700">
+              Password
+            </label>
+
+            <input
+              type="password"
+              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              required
+            />
+
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+          >
+            {loading ? "Signing in..." : "Login"}
+          </button>
+
+        </form>
+
+        <p className="mt-8 text-center text-sm text-slate-500">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="font-medium text-blue-600 hover:underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+
+      </div>
+
     </div>
   );
 };

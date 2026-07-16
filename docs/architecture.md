@@ -11,7 +11,7 @@ MeetMind is an AI-powered meeting intelligence platform that enables users to up
 - Database: MongoDB Atlas
 - Authentication: JWT
 - File Uploads: Multer
-- AI (Planned): Faster Whisper + Local LLM
+- AI Processing: Speech-to-Text + LLM-based summarization
 
 ## Architecture
 
@@ -29,8 +29,8 @@ Audio Upload
 ↓
 Uploads Folder
 ↓
-AI Service (Planned)
+AI Service
 ↓
-Transcript
+Transcript Generation
 ↓
-Summary & Action Items
+Summary + Key Decisions + Action Items

@@ -1,10 +1,15 @@
 import Button from "../common/Button";
 import { useNavigate } from "react-router-dom";
 
+
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(
+    localStorage.getItem("user") || "null",
+  );
+
+  const token = localStorage.getItem("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -26,21 +31,31 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          {user ? (
-            <>
-              <Button
-                onClick={() => navigate("/upload")}
-              >
-                Upload Meeting
-              </Button>
+          {token ? (
+  <div className="flex items-center gap-4">
+                <span className="text-sm font-medium text-slate-600">
+                  {user?.name}
+                </span>
 
-              <Button
-                variant="secondary"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </>
+                <Button
+                  variant="secondary"
+                  onClick={() => navigate("/dashboard")}
+                >
+                  Dashboard
+                </Button>
+
+                <Button onClick={() => navigate("/upload")}>
+                  Upload Meeting
+                </Button>
+
+                <Button
+                  variant="secondary"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </div>
+            
           ) : (
             <>
               <Button

@@ -7,8 +7,11 @@ MeetMind is an AI-powered meeting intelligence platform that enables users to se
 - JWT Authentication
 - Secure Meeting Management
 - Audio Upload
-- MongoDB Storage
-- AI-powered Meeting Intelligence (In Progress)
+- AI Transcription
+- AI-generated Summaries
+- Key Decision Extraction
+- Action Item Extraction
+- Meeting Dashboard
 
 ## Tech Stack
 

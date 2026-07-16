@@ -3,15 +3,19 @@
 Goal:
 Transform uploaded meeting recordings into actionable insights.
 
-Pipeline
+## Current Pipeline
 
 Upload Audio
 ↓
-Speech-to-Text
+Audio Storage
+↓
+Speech-to-Text Processing
 ↓
 Transcript Generation
 ↓
 Meeting Summarization
+↓
+Key Decision Extraction
 ↓
 Action Item Extraction
 ↓
@@ -19,10 +23,19 @@ Store Results in MongoDB
 ↓
 Display Insights on Dashboard
 
-Future Enhancements
+
+## Completed AI Features
+
+- Speech-to-Text transcription
+- AI-generated meeting summary
+- Key decisions extraction
+- Action item extraction
+
+
+## Future Enhancements
 
 - Speaker Identification
-- Key Decisions
-- Meeting Sentiment
+- Meeting Sentiment Analysis
 - Calendar Integration
 - Email Summary Sharing
+- AI Chat with Meeting Transcript
