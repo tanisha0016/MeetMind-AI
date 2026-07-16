@@ -23,3 +23,13 @@ export const uploadMeeting = async (formData: FormData) => {
 
   return response.data;
 };
+
+export const deleteMeeting = async (
+  id: string,
+) => {
+  const response = await api.delete(
+    `/meetings/${id}`,
+  );
+
+  return response.data;
+};

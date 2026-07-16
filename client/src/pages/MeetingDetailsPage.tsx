@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getMeetingById } from "../services/meeting.service";
+import {
+  getMeetingById,
+  deleteMeeting,
+} from "../services/meeting.service";
 import type { Meeting } from "../types";
 import Navbar from "../components/layout/Navbar";
 
@@ -29,6 +32,28 @@ const MeetingDetailsPage = () => {
     fetchMeeting();
   }, [id]);
 
+  const handleDelete = async () => {
+    if (!id) return;
+
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this meeting?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteMeeting(id);
+
+      alert("Meeting deleted successfully");
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+
+      alert("Failed to delete meeting");
+    }
+  };
+
 
   if (loading) {
     return (
@@ -56,12 +81,23 @@ const MeetingDetailsPage = () => {
       <div className="min-h-screen bg-slate-100 py-10">
         <div className="mx-auto max-w-5xl px-6">
 
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="mb-6 rounded-lg bg-white px-4 py-2 shadow hover:bg-slate-100"
-          >
-            ← Back to Dashboard
-          </button>
+          <div className="mb-6 flex justify-between">
+
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="rounded-lg bg-white px-4 py-2 shadow hover:bg-slate-100"
+            >
+              ← Back to Dashboard
+            </button>
+
+            <button
+              onClick={handleDelete}
+              className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700"
+            >
+              Delete Meeting
+            </button>
+
+          </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
 
