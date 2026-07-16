@@ -4,21 +4,34 @@ import { getMeetings } from "../services/meeting.service";
 import type { Meeting } from "../types";
 import MeetingCard from "../components/meeting/MeetingCard";
 import Navbar from "../components/layout/Navbar";
+import MeetingCardSkeleton from "../components/meeting/MeetingCardSkeleton";
 
 const DashboardPage = () => {
     const navigate = useNavigate();
 
     const [meetings, setMeetings] = useState<Meeting[]>([]);
+    const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
 
     useEffect(() => {
         const fetchMeetings = async () => {
             try {
+                setLoading(true);
+
+                await new Promise((resolve) =>
+                    setTimeout(resolve, 2000),
+                );
+
                 const response = await getMeetings();
+
                 setMeetings(response.data);
+
             } catch (error) {
                 console.error(error);
+
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -49,6 +62,22 @@ const DashboardPage = () => {
     const processingMeetings = meetings.filter(
         (meeting) => meeting.status === "processing",
     ).length;
+
+    if (loading) {
+        return (
+            <>
+                <Navbar />
+
+                <div className="min-h-screen bg-slate-100">
+                    <div className="mx-auto grid max-w-6xl gap-6 px-6 py-10 md:grid-cols-2 xl:grid-cols-3">
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <MeetingCardSkeleton key={index} />
+                        ))}
+                    </div>
+                </div>
+            </>
+        );
+    }
 
     return (
         <>
@@ -144,6 +173,8 @@ const DashboardPage = () => {
                         </div>
 
                     </div>
+
+
 
                     {filteredMeetings.length === 0 ? (
                         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-16 text-center shadow-sm">
