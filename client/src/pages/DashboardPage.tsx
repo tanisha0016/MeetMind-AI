@@ -40,6 +40,16 @@ const DashboardPage = () => {
         return matchesSearch && matchesStatus;
     });
 
+    const totalMeetings = meetings.length;
+
+    const completedMeetings = meetings.filter(
+        (meeting) => meeting.status === "completed",
+    ).length;
+
+    const processingMeetings = meetings.filter(
+        (meeting) => meeting.status === "processing",
+    ).length;
+
     return (
         <>
             <Navbar />
@@ -88,13 +98,49 @@ const DashboardPage = () => {
                                     key={status}
                                     onClick={() => setStatusFilter(status)}
                                     className={`rounded-lg px-4 py-2 text-sm font-medium transition ${statusFilter === status
-                                            ? "bg-blue-600 text-white"
-                                            : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                                        ? "bg-blue-600 text-white"
+                                        : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
                                         }`}
                                 >
                                     {status.charAt(0).toUpperCase() + status.slice(1)}
                                 </button>
                             ))}
+                        </div>
+
+
+
+                    </div>
+
+                    <div className="mb-8 grid gap-6 md:grid-cols-3">
+
+                        <div className="rounded-xl bg-white p-6 shadow-sm">
+                            <p className="text-sm text-slate-500">
+                                Total Meetings
+                            </p>
+
+                            <h2 className="mt-2 text-3xl font-bold">
+                                {totalMeetings}
+                            </h2>
+                        </div>
+
+                        <div className="rounded-xl bg-white p-6 shadow-sm">
+                            <p className="text-sm text-slate-500">
+                                Completed
+                            </p>
+
+                            <h2 className="mt-2 text-3xl font-bold text-green-600">
+                                {completedMeetings}
+                            </h2>
+                        </div>
+
+                        <div className="rounded-xl bg-white p-6 shadow-sm">
+                            <p className="text-sm text-slate-500">
+                                Processing
+                            </p>
+
+                            <h2 className="mt-2 text-3xl font-bold text-yellow-600">
+                                {processingMeetings}
+                            </h2>
                         </div>
 
                     </div>
