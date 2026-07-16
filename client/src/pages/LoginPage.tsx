@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/auth.service";
 import Navbar from "../components/layout/Navbar";
+import toast from "react-hot-toast";
 
 
 const LoginPage = () => {
@@ -34,7 +35,7 @@ const LoginPage = () => {
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
-      alert("Login failed. Please check your email and password.");
+      toast.error("Login failed. Please check your email and password.");
     } finally {
       setLoading(false);
     }

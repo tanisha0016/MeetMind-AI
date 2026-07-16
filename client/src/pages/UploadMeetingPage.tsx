@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadMeeting } from "../services/upload.service";
 import Navbar from "../components/layout/Navbar";
+import toast from "react-hot-toast";
 
 const UploadMeetingPage = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const [loading, setLoading] = useState(false);
     e.preventDefault();
 
     if (!audio) {
-      alert("Please select an audio file");
+      toast.error("Please select an audio file");
       return;
     }
 
@@ -32,13 +33,13 @@ const [loading, setLoading] = useState(false);
     audio,
   );
 
-  alert("Meeting uploaded successfully");
+  toast.success("Meeting uploaded successfully");
 
   navigate("/dashboard");
 
 } catch (error) {
   console.error(error);
-  alert("Upload failed");
+  toast.error("Upload failed");
 
 } finally {
   setLoading(false);

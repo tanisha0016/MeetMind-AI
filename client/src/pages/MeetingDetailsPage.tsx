@@ -7,6 +7,7 @@ import {
 import type { Meeting } from "../types";
 import Navbar from "../components/layout/Navbar";
 import { exportMeetingPDF } from "../utils/pdf";
+import toast from "react-hot-toast";
 
 const MeetingDetailsPage = () => {
   const { id } = useParams();
@@ -45,13 +46,13 @@ const MeetingDetailsPage = () => {
     try {
       await deleteMeeting(id);
 
-      alert("Meeting deleted successfully");
+      toast.success("Meeting deleted successfully");
 
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
 
-      alert("Failed to delete meeting");
+      toast.error("Failed to delete meeting");
     }
   };
 
