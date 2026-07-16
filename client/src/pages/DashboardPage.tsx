@@ -9,6 +9,8 @@ const DashboardPage = () => {
     const navigate = useNavigate();
 
     const [meetings, setMeetings] = useState<Meeting[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [statusFilter, setStatusFilter] = useState("all");
 
     useEffect(() => {
         const fetchMeetings = async () => {
@@ -23,6 +25,21 @@ const DashboardPage = () => {
         fetchMeetings();
     }, []);
 
+    const filteredMeetings = meetings.filter((meeting) => {
+        const search = searchTerm.toLowerCase();
+
+        const matchesSearch =
+            meeting.title.toLowerCase().includes(search) ||
+            meeting.description.toLowerCase().includes(search) ||
+            (meeting.summary ?? "").toLowerCase().includes(search);
+
+        const matchesStatus =
+            statusFilter === "all" ||
+            meeting.status === statusFilter;
+
+        return matchesSearch && matchesStatus;
+    });
+
     return (
         <>
             <Navbar />
@@ -30,36 +47,70 @@ const DashboardPage = () => {
             <div className="min-h-screen bg-slate-100">
                 <div className="mx-auto max-w-6xl px-6 py-10">
 
-                    <div className="mb-8 flex items-center justify-between">
+                    <div className="mb-8">
 
-                        <div>
-                            <h1 className="text-3xl font-bold text-slate-900">
-                                Meetings
-                            </h1>
+                        <div className="flex items-start justify-between">
 
-                            <p className="mt-2 text-slate-500">
-                                View and manage your AI-generated meeting notes.
-                            </p>
+                            <div className="flex-1">
+
+                                <h1 className="text-3xl font-bold text-slate-900">
+                                    Meetings
+                                </h1>
+
+                                <p className="mt-2 text-slate-500">
+                                    View and manage your AI-generated meeting notes.
+                                </p>
+
+                            </div>
+
+                            <button
+                                onClick={() => navigate("/upload")}
+                                className="rounded-lg bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700"
+                            >
+                                Upload Meeting
+                            </button>
+
                         </div>
 
-                        <button
-                            onClick={() => navigate("/upload")}
-                            className="rounded-lg bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700"
-                        >
-                            Upload Meeting
-                        </button>
+                        <div className="mt-6">
+                            <input
+                                type="text"
+                                placeholder="Search by title, description or summary..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                            />
+                        </div>
+
+                        <div className="mt-4 flex gap-3">
+                            {["all", "completed", "processing"].map((status) => (
+                                <button
+                                    key={status}
+                                    onClick={() => setStatusFilter(status)}
+                                    className={`rounded-lg px-4 py-2 text-sm font-medium transition ${statusFilter === status
+                                            ? "bg-blue-600 text-white"
+                                            : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                                        }`}
+                                >
+                                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                                </button>
+                            ))}
+                        </div>
 
                     </div>
 
-                    {meetings.length === 0 ? (
+                    {filteredMeetings.length === 0 ? (
                         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-16 text-center shadow-sm">
                             <h2 className="text-xl font-semibold text-slate-700">
-                                No meetings yet
+                                {meetings.length === 0
+                                    ? "No meetings yet"
+                                    : "No matching meetings"}
                             </h2>
 
                             <p className="mt-3 text-slate-500">
-                                Upload your first meeting to generate transcripts,
-                                summaries and action items.
+                                {meetings.length === 0
+                                    ? "Upload your first meeting to generate transcripts, summaries and action items."
+                                    : "Try changing your search or status filter."}
                             </p>
 
                             <button
@@ -71,7 +122,7 @@ const DashboardPage = () => {
                         </div>
                     ) : (
                         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                            {meetings.map((meeting) => (
+                            {filteredMeetings.map((meeting) => (
                                 <MeetingCard
                                     key={meeting._id}
                                     meeting={meeting}
