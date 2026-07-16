@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/auth.service";
+import Navbar from "../components/layout/Navbar";
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -32,13 +34,18 @@ const LoginPage = () => {
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
-      alert("Invalid email or password");
+      alert("Login failed. Please check your email and password.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
+    <>
+  <Navbar />
+
+  <div className="flex min-h-[calc(100vh-64px)] items-center justify-center bg-slate-100 px-4">
+
     <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
 
       <div className="w-full max-w-md rounded-2xl bg-white p-10 shadow-lg">
@@ -50,11 +57,11 @@ const LoginPage = () => {
           </h1>
 
           <p className="mt-3 text-slate-500">
-            AI-powered meeting transcription
+            Welcome Back
           </p>
 
           <p className="mt-1 text-sm text-slate-400">
-            Welcome back! Sign in to continue.
+            Sign in to access your meeting dashboard.
           </p>
 
         </div>
@@ -107,7 +114,7 @@ const LoginPage = () => {
             disabled={loading}
             className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
           >
-            {loading ? "Signing in..." : "Login"}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
 
         </form>
@@ -118,13 +125,15 @@ const LoginPage = () => {
             to="/register"
             className="font-medium text-blue-600 hover:underline"
           >
-            Sign Up
+            Create an account
           </Link>
         </p>
 
       </div>
 
     </div>
+    </div>
+    </>
   );
 };
 

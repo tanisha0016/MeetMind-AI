@@ -6,6 +6,7 @@ import {
 } from "../services/meeting.service";
 import type { Meeting } from "../types";
 import Navbar from "../components/layout/Navbar";
+import { exportMeetingPDF } from "../utils/pdf";
 
 const MeetingDetailsPage = () => {
   const { id } = useParams();
@@ -90,12 +91,23 @@ const MeetingDetailsPage = () => {
               ← Back to Dashboard
             </button>
 
-            <button
-              onClick={handleDelete}
-              className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700"
-            >
-              Delete Meeting
-            </button>
+            <div className="flex gap-3">
+
+              <button
+                onClick={() => exportMeetingPDF(meeting)}
+                className="rounded-lg bg-slate-800 px-4 py-2 font-medium text-white hover:bg-slate-900"
+              >
+                Download PDF
+              </button>
+
+              <button
+                onClick={handleDelete}
+                className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700"
+              >
+                Delete Meeting
+              </button>
+
+            </div>
 
           </div>
 
