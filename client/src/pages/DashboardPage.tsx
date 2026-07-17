@@ -39,7 +39,7 @@ const DashboardPage = () => {
 
         const matchesSearch =
             meeting.title.toLowerCase().includes(search) ||
-            meeting.description.toLowerCase().includes(search) ||
+            (meeting.description ?? "").toLowerCase().includes(search) ||
             (meeting.summary ?? "").toLowerCase().includes(search);
 
         const matchesStatus =
