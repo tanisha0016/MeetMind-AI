@@ -19,7 +19,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section id="features" className="mx-auto max-w-7xl px-6 py-20">
       <h2 className="mb-12 text-center text-4xl font-bold">
         Everything You Need
       </h2>
