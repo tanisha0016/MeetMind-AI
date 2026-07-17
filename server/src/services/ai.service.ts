@@ -19,9 +19,6 @@ export const processMeetingAudio = async (audioPath: string) => {
             "python.exe",
         );
 
-        console.log("Python executable:", pythonExecutable);
-console.log("Python script:", pythonScript);
-
         const { stdout, stderr } = await execFileAsync(
             pythonExecutable,
             [pythonScript, fullAudioPath],

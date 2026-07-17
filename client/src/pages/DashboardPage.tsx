@@ -19,10 +19,6 @@ const DashboardPage = () => {
             try {
                 setLoading(true);
 
-                await new Promise((resolve) =>
-                    setTimeout(resolve, 2000),
-                );
-
                 const response = await getMeetings();
 
                 setMeetings(response.data);
