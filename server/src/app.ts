@@ -12,6 +12,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+import path from "path";
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../uploads")),
+);
+
 // Routes
 app.use("/api", routes);
 app.use("/api/auth", authRoutes);
