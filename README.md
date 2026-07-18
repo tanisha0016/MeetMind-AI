@@ -1,35 +1,35 @@
-# 🧠 MeetMind AI
+# MeetMind AI
 
 An AI-powered meeting assistant that transforms meeting recordings into structured meeting notes, summaries, key decisions, and actionable tasks.
 
-Built with a modern MERN architecture and deployed using Netlify, Railway, and MongoDB Atlas.
+Built with a modern MERN + TypeScript architecture and deployed using Netlify, Railway, and MongoDB Atlas.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-🔗 Live Application: https://meetmind-ai-demo.netlify.app/
+Live Application: https://meetmind-ai-demo.netlify.app/
 
-💻 GitHub Repository: https://github.com/tanisha0016/MeetMind-AI
-
----
-
-## ✨ Features
-
-- 🔐 Secure JWT Authentication
-- 🎙️ Upload Meeting Audio
-- 🤖 AI-generated Meeting Summaries
-- ✅ Automatic Action Item Extraction
-- 📌 Key Decision Extraction
-- 📄 Download Meeting Notes as PDF
-- 🔍 Search Meetings
-- 🗂 Filter Meetings by Status
-- 📱 Responsive Dashboard
-- ⚡ Loading Skeletons for Better UX
+GitHub Repository: https://github.com/tanisha0016/MeetMind-AI
 
 ---
 
-## 🛠 Tech Stack
+## Features
+
+- Secure JWT Authentication
+- Upload Meeting Audio
+- AI-generated Meeting Summaries
+- Automatic Action Item Extraction
+- Key Decision Extraction
+- Download Meeting Notes as PDF
+- Search Meetings
+- Filter Meetings by Status
+- Responsive Dashboard
+- Loading Skeletons for Better UX
+
+---
+
+## Tech Stack
 
 ### Frontend
 
@@ -50,7 +50,7 @@ Built with a modern MERN architecture and deployed using Netlify, Railway, and M
 
 ### AI
 
-- OpenAI API
+- OpenAI API (LLM-powered summarization and action item extraction)
 
 ### Deployment
 
@@ -60,81 +60,77 @@ Built with a modern MERN architecture and deployed using Netlify, Railway, and M
 
 ---
 
-## 📷 Screenshots
+## Screenshots
 
 ### Landing Page
 
-![Landing Page](screenshots/landing.png)
-
+![Landing Page](./screenshots/landing.png)
 
 ### Login Page
 
-![Login Page](screenshots/login.png)
-
+![Login Page](./screenshots/login.png)
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
-
+![Dashboard](./screenshots/dashboard.png)
 
 ### Meeting Details
 
-![Meeting Details](screenshots/details.png)
+![Meeting Details](./screenshots/details.png)
 
+### Upload Meeting
 
-### Upload Meeting 
-
-![Upload Meeting](screenshots/upload.png)
-
+![Upload Meeting](./screenshots/upload.png)
 
 ### PDF Export
 
-![PDF Export](screenshots/pdf.png)
+![PDF Export](./screenshots/pdf.png)
 
 ---
-## 🏗 Architecture
+
+## Architecture
 
 ```
                 React + TypeScript
-                        │
+                        |
                      Axios API
-                        │
+                        |
                 Express REST API
-                        │
-      JWT Authentication Middleware
-                        │
-                  MongoDB Atlas
-                        │
-                  OpenAI API
+                        |
+        JWT Authentication Middleware
+                        |
+        +---------------+---------------+
+        |                               |
+   OpenAI API                    MongoDB Atlas
 ```
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 MeetMind-AI
-│
+|
 ├── client
 │   ├── components
 │   ├── pages
 │   ├── services
 │   ├── routes
 │   └── ...
-│
+|
 ├── server
 │   ├── config
 │   ├── middleware
 │   ├── modules
 │   ├── routes
 │   └── ...
-│
+|
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 Clone the repository
 
@@ -142,14 +138,14 @@ Clone the repository
 git clone https://github.com/tanisha0016/MeetMind-AI.git
 ```
 
-Install frontend
+Install frontend dependencies
 
 ```bash
 cd client
 npm install
 ```
 
-Install backend
+Install backend dependencies
 
 ```bash
 cd ../server
@@ -158,33 +154,33 @@ npm install
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 ### Client
 
-Create a `.env`
+Create a `.env` file:
 
-```
+```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
 ### Server
 
-Create a `.env`
+Create a `.env` file:
 
-```
+```env
 PORT=5000
 
-MONGODB_URI=
+MONGODB_URI=your_mongodb_connection_string
 
-JWT_SECRET=
+JWT_SECRET=your_jwt_secret
 
-OPENAI_API_KEY=
+OPENAI_API_KEY=your_openai_api_key
 ```
 
 ---
 
-## ▶️ Running Locally
+## Running Locally
 
 ### Backend
 
@@ -202,7 +198,7 @@ npm run dev
 
 ---
 
-## 📄 API Endpoints
+## API Endpoints
 
 ### Authentication
 
@@ -220,15 +216,11 @@ POST /api/meetings/upload
 GET /api/meetings
 
 GET /api/meetings/:id
-
-PATCH /api/meetings/:id
-
-DELETE /api/meetings/:id
 ```
 
 ---
 
-## 🎯 Future Improvements
+## Future Improvements
 
 - AI Chat with Meeting Transcript
 - Speaker Identification
@@ -240,10 +232,12 @@ DELETE /api/meetings/:id
 
 ---
 
-## 👩‍💻 Author
+## Author
 
-**Tanisha Ahuja**
+Tanisha Ahuja
 
-GitHub: https://github.com/tanisha0016
+GitHub:
+https://github.com/tanisha0016
 
-LinkedIn: https://www.linkedin.com/in/tanisha-ahuja/
+LinkedIn:
+https://www.linkedin.com/in/tanisha-ahuja/
